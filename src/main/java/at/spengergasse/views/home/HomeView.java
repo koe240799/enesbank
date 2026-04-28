@@ -1,7 +1,9 @@
 package at.spengergasse.views.home;
 
 import com.vaadin.copilot.shaded.reactor.netty.http.internal.Http3;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Menu;
 import com.vaadin.flow.router.PageTitle;
@@ -16,22 +18,9 @@ import org.vaadin.lineawesome.LineAwesomeIconUrl;
 public class HomeView extends VerticalLayout {
 
     public HomeView() {
-
-
         setSpacing(true);
 
-        H1 companyname = new H1("Enes Bank");
-        companyname.getStyle()
-                .set("font-family", "cursive")
-                .set("font-size", "6rem")
-                .set("margin", "1rem");
-
-
-        H2 subtitle = new H2("... the best bank...");
-        subtitle.getStyle()
-                .set("margin", "0")
-                .set("color", "gray");
-
+        getHeader();
 
         Image img = new Image("images/logo.png", "placeholder logo");
         img.setWidth("200px");
@@ -61,13 +50,27 @@ public class HomeView extends VerticalLayout {
         H3 name = new H3("KOEN GmbH");
         H3 street = new H3("Lavantgasse 65");
         H3 city = new H3("1210 Wien");
-        add(companyname, subtitle, img, p1, p2, p3, p4, name, street, city);
+        add(getHeader(), img, p1, p2, p3, p4, name, street, city);
 
-        setSizeFull();
-        setSpacing(true);
-        setPadding(true);
-        setJustifyContentMode(JustifyContentMode.START);
-        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+
+    }
+
+    public static Component getHeader() {
+        H1 companyname = new H1("Enes Bank");
+        companyname.getStyle()
+                .set("font-family", "cursive")
+                .set("font-size", "6rem")
+                .set("margin", "1rem");
+
+
+        H2 subtitle = new H2("... the best bank...");
+        subtitle.getStyle()
+                .set("margin", "0")
+                .set("color", "gray");
+
+
+        VerticalLayout header = new VerticalLayout(companyname, subtitle);
+        return header;
     }
 
 }
