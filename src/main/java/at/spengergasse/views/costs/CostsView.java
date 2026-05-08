@@ -33,8 +33,8 @@ public class CostsView extends VerticalLayout {
 
         Component card0 = getCard("Inland", 0, OptionalDouble.empty());
         Component card1 = getCard("Deutschland", 2, OptionalDouble.of(1000));
-        Component card2 = getCard("Europa", 4, OptionalDouble.of(500));
-        Component card3 = getCard("USA", 6, OptionalDouble.of(400));
+        Component card2 = getCard("Europa", 4, OptionalDouble.of(600));
+        Component card3 = getCard("USA", 6, OptionalDouble.of(401));
         Component card4 = getCard("Welt", 15, OptionalDouble.of(200));
 
         FlexLayout cards = new FlexLayout(card0, card1, card2, card3, card4);
