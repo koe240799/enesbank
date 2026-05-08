@@ -80,5 +80,4 @@ public class Account implements Cloneable {
     public Account clone(){
         return new Account(accountId, firstName, openingDate, accountType, amount, active);
     }
-
 }
