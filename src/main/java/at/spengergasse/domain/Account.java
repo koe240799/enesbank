@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @ToString
 //@NoArgsConstructor
 //@AllArgsConstructor
-@EqualsAndHashCode(of = "orderId", callSuper = false)
+@EqualsAndHashCode(of = "accountId", callSuper = false)
 @Entity
 
 public class Account implements Cloneable {
@@ -68,6 +68,7 @@ public class Account implements Cloneable {
             throw new AccountException("Sie haben Ihren Kreditlimit überschritten!");
         if (amount.doubleValue() > 100000)
             throw new AccountException("Guthaben darf nicht über € 100.000 sein!");
+        this.amount = amount;
     }
 
     public void setAccounttypes(String accountType) {
