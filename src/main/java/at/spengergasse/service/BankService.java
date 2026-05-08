@@ -54,4 +54,8 @@ public class BankService {
     public void removeAllAccounts() {
         accounts.clear();
     }
+
+    public void addAccount(Account a) {
+        accounts.add(a);
+    }
 }
