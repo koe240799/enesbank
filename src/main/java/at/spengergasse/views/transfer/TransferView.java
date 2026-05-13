@@ -4,10 +4,12 @@ import at.spengergasse.domain.Account;
 import at.spengergasse.domain.AccountException;
 import at.spengergasse.service.BankService;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -28,13 +30,48 @@ public class TransferView extends VerticalLayout {
     private final Button add10Accounts = new Button("Add 10 accounts");
     private final Button addWrongAccount = new Button("Add wrong accounts");
 
-    private final Grid<Account> grid = new Grid<>(Account.class, true);
+    private final Grid<Account> grid = new Grid<>(Account.class, false);
     private final BankService bankService;
 
 
     public TransferView(@Autowired BankService bankService) {
         this.bankService = bankService;
         setSpacing(true);
+
+        grid.addColumn(a -> a.getAccountId())
+                .setHeader("Account ID")
+                .setSortable(true);
+        grid.addColumn(a -> a.getFirstName())
+                .setHeader("First Name")
+                .setSortable(true);
+        grid.addColumn(a -> a.getOpeningDate())
+                .setHeader("Opening Date")
+                .setSortable(true);
+
+        Image img = new Image("icons/logo.png", "Logo");
+        img.setWidth("32px");
+        grid.addColumn(a -> a.getAccountType())
+                .setHeader(new HorizontalLayout(img, new Span("AccType")))
+                .setSortable(true);
+
+
+        grid.addColumn(a -> a.getAmount())
+                .setHeader("Amount")
+                .setSortable(true);
+        grid.addColumn(a -> a.getActive())
+                .setHeader("Active")
+                .setSortable(true);
+        grid.addColumn(a -> a.getActive() ? "Y" : "N")
+                .setHeader("Active")
+                .setSortable(true);
+        grid.addComponentColumn(a -> {
+                    Checkbox cb = new Checkbox(a.getActive());
+                    cb.setReadOnly(true);
+                    return cb;
+                })
+                .setHeader("Active")
+                .setSortable(true);
+
 
         setSizeFull();
         grid.setSizeFull();
